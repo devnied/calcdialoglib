@@ -24,7 +24,6 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.ContextThemeWrapper;
@@ -36,12 +35,12 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
-import java.math.BigDecimal;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.appcompat.content.res.AppCompatResources;
+
+import java.math.BigDecimal;
 
 
 /**
@@ -111,9 +110,7 @@ public class CalcDialog extends AppCompatDialogFragment {
         final View headerElevationBgView = view.findViewById(R.id.calc_view_header_elevation);
         headerBgView.setBackgroundColor(headerColor);
         headerElevationBgView.setBackgroundColor(headerElevationColor);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            headerElevationBgView.setVisibility(View.GONE);
-        }
+        headerElevationBgView.setVisibility(View.GONE);
 
         // Value and expression views
         valueTxv = view.findViewById(R.id.calc_txv_value);

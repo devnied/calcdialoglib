@@ -21,14 +21,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * Settings for the calculator dialog.
@@ -298,7 +297,6 @@ public class CalcSettings implements Parcelable {
         if (bundle != null) {
             nbFormat = getNumberFormatFromBundle(bundle);
             requestCode = bundle.getInt("requestCode");
-            //noinspection ConstantConditions
             numpadLayout = (CalcNumpadLayout) bundle.getSerializable("numpadLayout");
             isExpressionShown = bundle.getBoolean("isExpressionShown");
             isZeroShownWhenNoValue = bundle.getBoolean("isZeroShownWhenNoValue");

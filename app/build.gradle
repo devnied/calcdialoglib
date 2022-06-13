@@ -5,7 +5,6 @@ plugins {
 
 android {
     compileSdkVersion setup.compileSdk
-    buildToolsVersion setup.buildTools
     defaultConfig {
         applicationId "com.maltaisn.calcdialoglib.demo"
         minSdkVersion setup.minSdk

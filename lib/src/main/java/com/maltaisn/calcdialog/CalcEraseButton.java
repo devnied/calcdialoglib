@@ -38,15 +38,15 @@ import androidx.appcompat.widget.AppCompatImageView;
  * - eraseAllOnHold: If true, holding button will trigger an erase all event instead of quick
  * erase mode if false. By default this is false.
  */
-class CalcEraseButton extends AppCompatImageView {
+public class CalcEraseButton extends AppCompatImageView {
 
     private static final String TAG = CalcEraseButton.class.getSimpleName();
 
     private static final int NO_HOLD_ERASE = -1;
 
-    private int eraseHoldDelay;
-    private int eraseHoldSpeed;
-    private boolean eraseAllOnHold;
+    private final int eraseHoldDelay;
+    private final int eraseHoldSpeed;
+    private final boolean eraseAllOnHold;
 
     private final Handler eraseHandler;
     private final Runnable eraseRunnable;

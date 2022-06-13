@@ -1,8 +1,5 @@
 plugins {
     id "com.android.library"
-    id "com.github.dcendents.android-maven"
-    id "com.jfrog.bintray"
-    id "com.github.breadmoirai.github-release"
 }
 
 ext {
@@ -13,7 +10,6 @@ ext {
 
 android {
     compileSdkVersion setup.compileSdk
-    buildToolsVersion setup.buildTools
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
@@ -31,5 +27,3 @@ dependencies {
 }
 
 tasks.withType(Javadoc).all { enabled = false }
-
-apply from: "publishing.gradle"
