@@ -1,5 +1,6 @@
 plugins {
     id "com.android.library"
+    id "maven-publish"
 }
 
 ext {
@@ -21,6 +22,24 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = project.findProperty("group") ?: "com.github.devnied"
+                artifactId = "calcdialog"
+                version = project.findProperty("version") ?: libVersion
+            }
+        }
     }
 }
 
