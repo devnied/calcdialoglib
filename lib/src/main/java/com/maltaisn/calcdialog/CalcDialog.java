@@ -19,6 +19,8 @@ package com.maltaisn.calcdialog;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
@@ -28,12 +30,15 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -114,6 +119,13 @@ public class CalcDialog extends AppCompatDialogFragment {
 
         // Value and expression views
         valueTxv = view.findViewById(R.id.calc_txv_value);
+        valueTxv.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                showPasteMenu(v);
+                return true;
+            }
+        });
 
         expressionHsv = view.findViewById(R.id.calc_hsv_expression);
         expressionTxv = view.findViewById(R.id.calc_txv_expression);
@@ -130,7 +142,9 @@ public class CalcDialog extends AppCompatDialogFragment {
 
             @Override
             public void onEraseAll() {
-                presenter.onErasedAll();
+                if (presenter != null) {
+                    presenter.onErasedAll();
+                }
             }
         });
 
@@ -365,6 +379,36 @@ public class CalcDialog extends AppCompatDialogFragment {
      */
     public CalcSettings getSettings() {
         return settings;
+    }
+
+    private void showPasteMenu(View anchor) {
+        if (presenter == null) return;
+
+        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (cm == null || !cm.hasPrimaryClip()) return;
+
+        ClipData clip = cm.getPrimaryClip();
+        if (clip == null || clip.getItemCount() == 0) return;
+
+        CharSequence pasted = clip.getItemAt(0).coerceToText(context);
+        if (pasted == null || pasted.length() == 0) return;
+
+        final String text = pasted.toString();
+        PopupMenu menu = new PopupMenu(context, anchor);
+        menu.getMenu().add(0, android.R.id.paste, 0, R.string.calc_dialog_paste);
+        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (presenter == null) return false;
+                boolean ok = presenter.onValuePasted(text);
+                if (!ok) {
+                    Toast.makeText(context, R.string.calc_dialog_paste_invalid,
+                            Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
+        menu.show();
     }
 
     ////////// VIEW METHODS //////////

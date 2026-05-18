@@ -16,4 +16,7 @@
 
     <string name="calc_dialog_erase">Ištrinti</string>
 
+    <string name="calc_dialog_paste">Įklijuoti</string>
+    <string name="calc_dialog_paste_invalid">Netinkamas skaičius</string>
+
 </resources>

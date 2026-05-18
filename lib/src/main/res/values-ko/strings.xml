@@ -15,4 +15,7 @@
 
     <string name="calc_dialog_erase">삭제</string>
 
+    <string name="calc_dialog_paste">붙여넣기</string>
+    <string name="calc_dialog_paste_invalid">잘못된 숫자</string>
+
 </resources>

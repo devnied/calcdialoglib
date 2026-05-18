@@ -15,4 +15,7 @@
 
     <string name="calc_dialog_erase">抹去</string>
 
+    <string name="calc_dialog_paste">粘贴</string>
+    <string name="calc_dialog_paste_invalid">无效数字</string>
+
 </resources>

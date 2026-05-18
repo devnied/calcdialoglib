@@ -22,8 +22,36 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class ExpressionTest {
+
+    @Test
+    public void divideByZeroThrows() {
+        Expression expr = new Expression();
+        expr.numbers.add(new BigDecimal("5"));
+        expr.operators.add(Expression.Operator.DIVIDE);
+        expr.numbers.add(new BigDecimal("0"));
+
+        assertThrows(ArithmeticException.class,
+                () -> expr.evaluate(true, 8, RoundingMode.HALF_UP));
+        assertThrows(ArithmeticException.class,
+                () -> expr.evaluate(false, 8, RoundingMode.HALF_UP));
+    }
+
+    @Test
+    public void unbalancedExpressionThrows() {
+        // Regression: in the old code, a div/0 on an operator press could leave the
+        // expression with numbers.size() != operators.size() + 1.
+        Expression expr = new Expression();
+        expr.numbers.add(new BigDecimal("1"));
+        expr.operators.add(Expression.Operator.ADD);
+        expr.operators.add(Expression.Operator.ADD);
+        expr.numbers.add(new BigDecimal("2"));
+
+        assertThrows(IllegalStateException.class,
+                () -> expr.evaluate(false, 8, RoundingMode.HALF_UP));
+    }
 
     @Test
     public void twoSum() {

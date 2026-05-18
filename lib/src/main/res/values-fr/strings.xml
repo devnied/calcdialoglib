@@ -16,4 +16,7 @@
 
     <string name="calc_dialog_erase">Effacer</string>
 
+    <string name="calc_dialog_paste">Coller</string>
+    <string name="calc_dialog_paste_invalid">Nombre invalide</string>
+
 </resources>

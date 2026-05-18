@@ -16,4 +16,7 @@
 
     <string name="calc_dialog_erase">לִמְחוֹק</string>
 
+    <string name="calc_dialog_paste">הדבק</string>
+    <string name="calc_dialog_paste_invalid">מספר לא חוקי</string>
+
 </resources>

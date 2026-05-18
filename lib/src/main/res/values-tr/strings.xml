@@ -15,4 +15,7 @@
 
     <string name="calc_dialog_erase">Silmek</string>
 
+    <string name="calc_dialog_paste">Yapıştır</string>
+    <string name="calc_dialog_paste_invalid">Geçersiz sayı</string>
+
 </resources>

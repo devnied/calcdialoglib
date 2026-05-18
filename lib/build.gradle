@@ -9,12 +9,18 @@ ext {
 }
 
 android {
-    compileSdkVersion setup.compileSdk
+    namespace = "com.maltaisn.calcdialog"
+    compileSdk = setup.compileSdk
     defaultConfig {
-        minSdkVersion setup.minSdk
-        targetSdkVersion setup.targetSdk
-        versionCode libVersionCode
-        versionName libVersion
+        minSdk = setup.minSdk
+        targetSdk = setup.targetSdk
+        versionCode = libVersionCode
+        versionName = libVersion
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 

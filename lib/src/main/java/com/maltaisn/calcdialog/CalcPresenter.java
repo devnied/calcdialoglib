@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -201,7 +202,8 @@ class CalcPresenter {
 
         // Check if max digits has been exceeded
         int pointPos = valueStr.indexOf('.');
-        boolean maxIntReached = (pointPos == -1 && valueStr.length() >= settings.maxIntDigits);
+        int intDigits = (pointPos == -1 ? valueStr.length() : pointPos) - (!valueStr.isEmpty() && valueStr.charAt(0) == '-' ? 1 : 0);
+        boolean maxIntReached = (intDigits >= settings.maxIntDigits);
         boolean maxFracReached = (pointPos != -1 && valueStr.length() - pointPos - 1 >= nbFormat.getMaximumFractionDigits());
         if (maxIntReached || maxFracReached) {
             // Can't add a new digit, it's already at the maximum.
@@ -233,12 +235,20 @@ class CalcPresenter {
                 currentValue = BigDecimal.ZERO;
             }
             expression.numbers.add(currentValue);
-            calculate();
-            expression.operators.add(operator);
 
-            if (!settings.shouldEvaluateOnOperation) {
+            if (settings.shouldEvaluateOnOperation) {
+                calculate();
+                if (errorCode != ERROR_NONE) {
+                    // Calculation failed (e.g. division by zero). Don't append the operator,
+                    // otherwise numbers/operators get unbalanced for the next evaluation.
+                    return;
+                }
+            } else {
                 currentValue = null;
+                canEditCurrentValue = false;
+                currentIsAnswer = false;
             }
+            expression.operators.add(operator);
         }
 
         view.setAnswerBtnVisible(settings.isAnswerBtnShown && resultValue != null);
@@ -288,6 +298,94 @@ class CalcPresenter {
         clearExpressionIfNeeded();
         if (dismissError()) return;
         equal();
+    }
+
+    /**
+     * Called when the user pastes a value (via long-press on the value display).
+     * Returns true if the value was applied, false if it could not be parsed.
+     */
+    boolean onValuePasted(@NonNull String text) {
+        BigDecimal value = parseValue(text);
+        if (value == null) {
+            return false;
+        }
+
+        // Clamp fraction digits to the format's maximum.
+        int maxFrac = nbFormat.getMaximumFractionDigits();
+        if (value.scale() > maxFrac) {
+            value = value.setScale(maxFrac, nbFormat.getRoundingMode());
+        }
+
+        // Reject if integer part exceeds the configured maximum.
+        String plain = value.abs().toPlainString();
+        int pointPos = plain.indexOf('.');
+        int intDigits = pointPos == -1 ? plain.length() : pointPos;
+        if (intDigits > settings.maxIntDigits) {
+            return false;
+        }
+
+        clearExpressionIfNeeded();
+        dismissError();
+
+        currentIsAnswer = false;
+        currentIsResult = false;
+        view.setAnswerBtnVisible(false);
+
+        currentValue = value;
+        int scale = value.scale();
+        currentValueScale = scale <= 0 ? -1 : scale;
+        canEditCurrentValue = true;
+
+        updateCurrentValue();
+        return true;
+    }
+
+    @Nullable
+    private BigDecimal parseValue(@NonNull String text) {
+        text = text.trim();
+        if (text.isEmpty()) return null;
+
+        // First, try to parse using the configured number format (handles grouping
+        // separators, locale-specific decimal separator, prefix/suffix, etc.).
+        if (nbFormat instanceof DecimalFormat) {
+            DecimalFormat df = (DecimalFormat) nbFormat;
+            boolean prev = df.isParseBigDecimal();
+            df.setParseBigDecimal(true);
+            try {
+                Number num = df.parse(text);
+                if (num instanceof BigDecimal) {
+                    return (BigDecimal) num;
+                }
+                if (num != null) {
+                    return new BigDecimal(num.toString());
+                }
+            } catch (ParseException ignored) {
+            } finally {
+                df.setParseBigDecimal(prev);
+            }
+        } else {
+            try {
+                Number num = nbFormat.parse(text);
+                if (num != null) {
+                    return new BigDecimal(num.toString());
+                }
+            } catch (ParseException ignored) {
+            }
+        }
+
+        // Fall back to plain BigDecimal parsing.
+        try {
+            return new BigDecimal(text);
+        } catch (NumberFormatException ignored) {
+        }
+
+        // Last chance: strip everything but digits, sign and decimal point.
+        String cleaned = text.replaceAll("[^0-9.\\-]", "");
+        try {
+            return new BigDecimal(cleaned);
+        } catch (NumberFormatException ignored) {
+            return null;
+        }
     }
 
     void onAnswerBtnClicked() {
@@ -521,7 +619,12 @@ class CalcPresenter {
     private String getCurrentValueString() {
         if (currentValue == null) return "";
 
-        String str = currentValue.setScale(Math.max(0, currentValueScale),
+        // Use at least the value's own scale to avoid an ArithmeticException from
+        // setScale(.., UNNECESSARY) if currentValueScale ever lags behind the real
+        // scale of currentValue (e.g. after popping an evaluated number from the
+        // expression in editable mode).
+        int targetScale = Math.max(Math.max(0, currentValueScale), currentValue.scale());
+        String str = currentValue.setScale(targetScale,
                 RoundingMode.UNNECESSARY).toPlainString();
         if (currentValueScale == 0) {
             str += '.';

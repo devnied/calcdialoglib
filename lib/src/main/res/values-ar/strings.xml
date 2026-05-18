@@ -15,4 +15,7 @@
 
     <string name="calc_dialog_erase">محو</string>
 
+    <string name="calc_dialog_paste">لصق</string>
+    <string name="calc_dialog_paste_invalid">رقم غير صالح</string>
+
 </resources>

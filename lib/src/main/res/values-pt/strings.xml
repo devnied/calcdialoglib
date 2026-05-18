@@ -15,4 +15,7 @@
 
     <string name="calc_dialog_erase">Apagar</string>
 
+    <string name="calc_dialog_paste">Colar</string>
+    <string name="calc_dialog_paste_invalid">Número inválido</string>
+
 </resources>

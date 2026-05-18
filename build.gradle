@@ -1,31 +1,20 @@
-buildscript {
-    ext {
-        setup = [
-                compileSdk: 31,
-                minSdk: 21,
-                targetSdk: 31
-        ]
-    }
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath "com.android.tools.build:gradle:$androidPluginVersion"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayPluginVersion"
-    }
-}
-
 plugins {
     id "base"
+    alias(libs.plugins.android.application) apply false
+}
+
+ext {
+    setup = [
+            compileSdk: 36,
+            minSdk: 23,
+            targetSdk: 36
+    ]
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

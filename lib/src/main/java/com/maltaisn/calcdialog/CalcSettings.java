@@ -67,6 +67,16 @@ public class CalcSettings implements Parcelable {
         if (minValue != null && maxValue != null && minValue.compareTo(maxValue) >= 0) {
             throw new IllegalArgumentException("Minimum value must be less than maximum value.");
         }
+        if (initialValue != null) {
+            if (minValue != null && initialValue.compareTo(minValue) < 0) {
+                throw new IllegalArgumentException(
+                        "Initial value must be greater than or equal to minimum value.");
+            }
+            if (maxValue != null && initialValue.compareTo(maxValue) > 0) {
+                throw new IllegalArgumentException(
+                        "Initial value must be less than or equal to maximum value.");
+            }
+        }
     }
 
     /**

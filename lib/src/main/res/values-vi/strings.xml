@@ -15,4 +15,7 @@
 
     <string name="calc_dialog_erase">Xoá</string>
 
+    <string name="calc_dialog_paste">Dán</string>
+    <string name="calc_dialog_paste_invalid">Số không hợp lệ</string>
+
 </resources>

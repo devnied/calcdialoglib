@@ -15,4 +15,7 @@
 
     <string name="calc_dialog_erase">मिटाना</string>
 
+    <string name="calc_dialog_paste">चिपकाएं</string>
+    <string name="calc_dialog_paste_invalid">अमान्य संख्या</string>
+
 </resources>

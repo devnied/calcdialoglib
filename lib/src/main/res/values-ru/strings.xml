@@ -16,4 +16,7 @@
 
     <string name="calc_dialog_erase">стирать</string>
 
+    <string name="calc_dialog_paste">Вставить</string>
+    <string name="calc_dialog_paste_invalid">Недопустимое число</string>
+
 </resources>

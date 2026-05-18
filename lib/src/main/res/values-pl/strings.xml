@@ -15,4 +15,7 @@
 
     <string name="calc_dialog_erase">Wymaż</string>
 
+    <string name="calc_dialog_paste">Wklej</string>
+    <string name="calc_dialog_paste_invalid">Nieprawidłowa liczba</string>
+
 </resources>

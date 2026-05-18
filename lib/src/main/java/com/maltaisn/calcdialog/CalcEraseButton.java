@@ -21,6 +21,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
@@ -67,12 +68,15 @@ public class CalcEraseButton extends AppCompatImageView {
 
         // Get speed attributes
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.CalcEraseButton);
-        eraseHoldDelay = ta.getInt(R.styleable.CalcEraseButton_calcEraseBtnHoldDelay, 750);
-        eraseHoldSpeed = ta.getInt(R.styleable.CalcEraseButton_calcEraseBtnHoldSpeed, 100);
-        eraseAllOnHold = ta.getBoolean(R.styleable.CalcEraseButton_calcEraseAllOnHold, false);
-        ta.recycle();
+        try {
+            eraseHoldDelay = ta.getInt(R.styleable.CalcEraseButton_calcEraseBtnHoldDelay, 750);
+            eraseHoldSpeed = ta.getInt(R.styleable.CalcEraseButton_calcEraseBtnHoldSpeed, 100);
+            eraseAllOnHold = ta.getBoolean(R.styleable.CalcEraseButton_calcEraseAllOnHold, false);
+        } finally {
+            ta.recycle();
+        }
 
-        eraseHandler = new Handler();
+        eraseHandler = new Handler(Looper.getMainLooper());
         eraseRunnable = new Runnable() {
             @Override
             public void run() {
@@ -97,14 +101,22 @@ public class CalcEraseButton extends AppCompatImageView {
         this.listener = listener;
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        clickingDown = false;
+        eraseHandler.removeCallbacksAndMessages(null);
+        super.onDetachedFromWindow();
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         boolean superReturn = super.onTouchEvent(event);  // does performClick(), so ignore warning
 
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            if (listener != null && eraseHoldDelay != NO_HOLD_ERASE) {
-                eraseHandler.removeCallbacks(eraseRunnable);
+        if (event.getAction() == MotionEvent.ACTION_UP
+                || event.getAction() == MotionEvent.ACTION_CANCEL) {
+            if (eraseHoldDelay != NO_HOLD_ERASE) {
+                eraseHandler.removeCallbacksAndMessages(null);
             }
             clickingDown = false;
             return true;
