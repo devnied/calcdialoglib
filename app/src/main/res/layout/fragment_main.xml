@@ -70,7 +70,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/selected_value_txv"
                         android:layout_width="0dp"
                         android:layout_height="48sp"
@@ -81,8 +81,8 @@
                         android:layout_marginRight="24dp"
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
-                        android:textColor="?colorOnSurface"
-                        android:textStyle="bold"
+                        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                        android:textColor="?attr/colorOnSurface"
                         app:autoSizeMaxTextSize="24sp"
                         app:autoSizeMinTextSize="12sp"
                         app:autoSizeTextType="uniform"
@@ -280,7 +280,7 @@
                             />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <CheckBox
+                    <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/max_value_chk"
                         style="@style/OptionsCheckboxStyle"
                         android:layout_width="wrap_content"
@@ -326,7 +326,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:text="@string/calc_numpad"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:labelFor="@id/numpad_layout_dropdown"
                         app:layout_constraintBottom_toBottomOf="@id/numpad_layout_dropdown_layout"
                         app:layout_constraintStart_toStartOf="parent"
@@ -401,7 +401,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:text="@string/nbfmt_label"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:labelFor="@id/nbfmt_dropdown"
                         app:layout_constraintBottom_toBottomOf="@id/nbfmt_dropdown_layout"
                         app:layout_constraintStart_toStartOf="parent"
@@ -481,7 +481,7 @@
                             />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <CheckBox
+                    <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/max_frac_digits_chk"
                         style="@style/OptionsCheckboxStyle"
                         android:layout_width="wrap_content"

@@ -2,16 +2,28 @@
 <resources>
 
     <color name="colorPrimary">#1565C0</color>
-    <color name="colorPrimaryVariant">#0D47A1</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimaryContainer">#D6E3FF</color>
+    <color name="colorOnPrimaryContainer">#001A41</color>
+
     <color name="colorSecondary">#00838F</color>
-    <color name="colorSecondaryVariant">#006064</color>
-    <color name="colorBackground">#ffffff</color>
-    <color name="colorSurface">#ffffff</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorSecondaryContainer">#A2EEF8</color>
+    <color name="colorOnSecondaryContainer">#001F24</color>
+
+    <color name="colorTertiary">#5C5891</color>
+    <color name="colorOnTertiary">#FFFFFF</color>
+
+    <color name="colorBackground">#FDFBFF</color>
+    <color name="colorOnBackground">#1B1B1F</color>
+    <color name="colorSurface">#FDFBFF</color>
+    <color name="colorOnSurface">#1B1B1F</color>
+    <color name="colorSurfaceVariant">#E1E2EC</color>
+    <color name="colorOnSurfaceVariant">#44474F</color>
+    <color name="colorSurfaceContainer">#EFEDF1</color>
+    <color name="colorOutline">#74777F</color>
+
     <color name="colorError">#B71C1C</color>
-    <color name="colorOnPrimary">#ffffff</color>
-    <color name="colorOnSecondary">#ffffff</color>
-    <color name="colorOnBackground">#000000</color>
-    <color name="colorOnSurface">#515151</color>
-    <color name="colorOnError">#ffffff</color>
+    <color name="colorOnError">#FFFFFF</color>
 
 </resources>

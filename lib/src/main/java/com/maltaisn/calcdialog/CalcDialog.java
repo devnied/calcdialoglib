@@ -25,7 +25,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Rect;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.ContextThemeWrapper;
@@ -163,7 +164,7 @@ public class CalcDialog extends AppCompatDialogFragment {
         }
 
         final View numberBtnBgView = view.findViewById(R.id.calc_view_number_bg);
-        numberBtnBgView.setBackgroundColor(numberBtnColor);
+        numberBtnBgView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
         // Operator buttons
         final TextView addBtn = view.findViewById(R.id.calc_btn_add);
@@ -202,7 +203,7 @@ public class CalcDialog extends AppCompatDialogFragment {
         });
 
         final View opBtnBgView = view.findViewById(R.id.calc_view_op_bg);
-        opBtnBgView.setBackgroundColor(operationBtnColor);
+        opBtnBgView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
         // Sign button: +/-
         signBtn = view.findViewById(R.id.calc_btn_sign);
@@ -275,16 +276,18 @@ public class CalcDialog extends AppCompatDialogFragment {
         // Set up dialog
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @SuppressWarnings("ConstantConditions")
             @Override
             public void onShow(DialogInterface dialogInterface) {
                 // Get maximum dialog dimensions
-                Rect fgPadding = new Rect();
-                dialog.getWindow().getDecorView().getBackground().getPadding(fgPadding);
                 DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-                int height = metrics.heightPixels - fgPadding.top - fgPadding.bottom;
-                int width = metrics.widthPixels - fgPadding.top - fgPadding.bottom;
+                int margin = (int) (24 * metrics.density);
+                int height = metrics.heightPixels - 2 * margin;
+                int width = metrics.widthPixels - 2 * margin;
 
                 // Set dialog's dimensions
                 if (width > maxDialogWidth) width = maxDialogWidth;

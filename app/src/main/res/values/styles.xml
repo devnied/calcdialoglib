@@ -10,7 +10,7 @@
     </style>
 
     <!-- DEMO APP STYLES -->
-    <style name="OptionsCardViewStyle">
+    <style name="OptionsCardViewStyle" parent="Widget.Material3.CardView.Elevated">
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_marginStart">16dp</item>
@@ -21,18 +21,18 @@
     </style>
 
     <style name="SubtitleTextViewStyle">
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
-        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleSmall</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="OptionsCheckboxStyle">
+    <style name="OptionsCheckboxStyle" parent="Widget.Material3.CompoundButton.CheckBox">
         <item name="android:minHeight">0dp</item>
         <item name="android:padding">0dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
     </style>
 
-    <style name="DropdownLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <style name="DropdownLayoutStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxBackgroundColor">@color/mtrl_filled_background_color</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
@@ -40,7 +40,7 @@
     </style>
 
     <style name="DropdownStyle">
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
         <item name="boxStrokeColor">@null</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
@@ -51,7 +51,7 @@
         <item name="android:cursorVisible">false</item>
     </style>
 
-    <style name="InputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="InputLayoutStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">@color/mtrl_filled_background_color</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
@@ -59,7 +59,7 @@
     </style>
 
     <style name="InputStyle">
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
         <item name="boxStrokeColor">@null</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>

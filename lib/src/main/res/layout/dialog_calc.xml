@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?calcBackgroundColor"
-    android:layoutDirection="ltr"
+    app:cardBackgroundColor="?attr/calcBackgroundColor"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="0dp"
+    app:contentPadding="0dp"
     tools:ignore="UnusedAttribute"
     tools:theme="@style/CalcDialogStyle"
+    >
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr"
     >
 
     <View
@@ -47,7 +55,7 @@
         tools:visibility="visible"
         >
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/calc_txv_expression"
             style="?calcExpressionStyle"
             android:layout_width="wrap_content"
@@ -57,7 +65,7 @@
 
     </HorizontalScrollView>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_txv_value"
         style="?calcValueStyle"
         android:layout_width="0dp"
@@ -103,7 +111,7 @@
         tools:background="?calcOperationBtnColor"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_24"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
@@ -115,11 +123,12 @@
         tools:text="0"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_13"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@id/calc_btn_decimal"
         app:layout_constraintEnd_toStartOf="@id/calc_guideline_start"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +136,7 @@
         tools:text="1"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_23"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
@@ -139,7 +148,7 @@
         tools:text="2"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_33"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
@@ -151,11 +160,12 @@
         tools:text="3"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_12"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@id/calc_btn_13"
         app:layout_constraintEnd_toStartOf="@id/calc_guideline_start"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,7 +173,7 @@
         tools:text="4"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_22"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
@@ -175,7 +185,7 @@
         tools:text="5"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_32"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
@@ -187,11 +197,13 @@
         tools:text="6"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_11"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@id/calc_btn_12"
         app:layout_constraintEnd_toStartOf="@id/calc_guideline_start"
         app:layout_constraintStart_toStartOf="parent"
@@ -200,7 +212,7 @@
         tools:text="7"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_21"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
@@ -212,7 +224,7 @@
         tools:text="8"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_31"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
@@ -224,11 +236,13 @@
         tools:text="9"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_decimal"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@id/calc_view_footer_divider"
         app:layout_constraintEnd_toStartOf="@id/calc_btn_24"
         app:layout_constraintStart_toStartOf="parent"
@@ -236,7 +250,7 @@
         tools:text="."
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_sign"
         style="?attr/calcDigitBtnStyle"
         android:layout_width="0dp"
@@ -248,23 +262,26 @@
         tools:text="±"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_div"
         style="?calcOperationBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@id/calc_btn_mul"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/calc_guideline_end"
-        app:layout_constraintTop_toTopOf="@id/calc_btn_11"
+        app:layout_constraintTop_toBottomOf="@id/calc_view_header_background"
         tools:text="÷"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_mul"
         style="?calcOperationBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@id/calc_btn_sub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/calc_guideline_end"
@@ -272,11 +289,12 @@
         tools:text="×"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_sub"
         style="?calcOperationBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@id/calc_btn_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/calc_guideline_end"
@@ -284,11 +302,12 @@
         tools:text="−"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_add"
         style="?calcOperationBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@id/calc_btn_equal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/calc_guideline_end"
@@ -296,11 +315,13 @@
         tools:text="+"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_equal"
         style="?calcOperationBtnStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@id/calc_view_footer_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/calc_guideline_end"
@@ -308,7 +329,7 @@
         tools:text="="
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calc_btn_answer"
         style="?calcAnswerBtnStyle"
         android:layout_width="0dp"
@@ -332,7 +353,7 @@
         tools:background="?attr/calcDividerColor"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/calc_btn_clear"
         style="?calcDialogButtonStyle"
         android:layout_width="wrap_content"
@@ -347,7 +368,7 @@
         app:layout_constraintTop_toBottomOf="@id/calc_view_footer_divider"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/calc_btn_cancel"
         style="?calcDialogButtonStyle"
         android:layout_width="wrap_content"
@@ -362,7 +383,7 @@
         app:layout_constraintTop_toBottomOf="@id/calc_view_footer_divider"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/calc_btn_ok"
         style="?calcDialogButtonStyle"
         android:layout_width="wrap_content"
@@ -402,3 +423,5 @@
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

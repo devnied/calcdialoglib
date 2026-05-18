@@ -10,9 +10,9 @@
         <item name="calcButtonTextCancel">@string/calc_dialog_cancel</item>
         <item name="calcButtonTextOk">@string/calc_dialog_ok</item>
         <item name="calcButtonTexts">@array/calc_dialog_btn_texts</item>
-        <item name="calcBackgroundColor">?colorBackgroundFloating</item>
-        <item name="calcHeaderColor">?calcBackgroundColor</item>
-        <item name="calcHeaderElevation">2dp</item>
+        <item name="calcBackgroundColor">?attr/colorSurface</item>
+        <item name="calcHeaderColor">?attr/colorSurfaceContainer</item>
+        <item name="calcHeaderElevation">0dp</item>
         <item name="calcHeaderElevationColor">#33000000</item>
         <item name="calcValueStyle">@style/CalcValueStyle</item>
         <item name="calcExpressionScrollViewStyle">@style/CalcExpressionScrollViewStyle</item>
@@ -35,8 +35,9 @@
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:paddingTop">16dp</item>
-        <item name="android:paddingBottom">16dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadlineSmall</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="autoSizeMaxTextSize">24sp</item>
@@ -46,8 +47,8 @@
 
     <public name="CalcExpressionStyle" type="style"/>
     <style name="CalcExpressionStyle">
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
-        <item name="android:textColor">@color/material_on_background_emphasis_medium</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
         <item name="android:maxLines">1</item>
         <item name="android:layout_gravity">end</item>
     </style>
@@ -63,35 +64,38 @@
 
     <public name="CalcNumberBtnStyle" type="style"/>
     <style name="CalcNumberBtnStyle">
-        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:background">@drawable/calc_btn_digit_bg</item>
         <item name="android:gravity">center</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadlineSmall</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textSize">28sp</item>
     </style>
 
     <public name="CalcOperationBtnStyle" type="style"/>
     <style name="CalcOperationBtnStyle">
-        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:background">@drawable/calc_btn_op_bg</item>
         <item name="android:gravity">center</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadlineSmall</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
     <public name="CalcAnswerBtnStyle" type="style"/>
     <style name="CalcAnswerBtnStyle">
-        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:gravity">center</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
     <public name="CalcEraseBtnStyle" type="style"/>
     <style name="CalcEraseBtnStyle">
-        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:scaleType">center</item>
         <item name="android:src">@drawable/calc_ic_backspace</item>
-        <item name="tint">@color/material_on_background_emphasis_medium</item>
+        <item name="tint">?attr/colorOnSurfaceVariant</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:contentDescription">@string/calc_dialog_erase</item>
@@ -99,6 +103,6 @@
 
     <public name="CalcDialogButtonStyle" type="style"/>
     <style name="CalcDialogButtonStyle"
-           parent="Widget.MaterialComponents.Button.TextButton.Dialog"/>
+           parent="Widget.Material3.Button.TextButton.Dialog"/>
 
 </resources>
